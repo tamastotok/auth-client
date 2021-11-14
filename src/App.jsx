@@ -1,15 +1,34 @@
-import devchallenges from "./assets/devchallenges.svg";
+import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
+import Login from "./views/Login";
+import Profile from "./views/Profile";
+import Registration from "./views/Registration";
 
 function App() {
+  const [isEnabled, setIsEnabled] = useState(false);
+
+  const handleReg = () => {
+    //axios code
+  };
+
+  const changeState = (state) => {
+    setIsEnabled(state);
+  };
+
   return (
-    <div className="auth-container">
-      <img src={devchallenges} alt="devchallenges" />
-      <h3>Join thousands of learners from around the world</h3>
-      <p>
-        Master web development by making real-life projects. There are multiple
-        paths for your to choose.
-      </p>
-    </div>
+    <Routes>
+      <Route
+        path="/"
+        element={
+          isEnabled ? (
+            <Registration handleReg={handleReg} changeState={changeState} />
+          ) : (
+            <Login changeState={changeState} />
+          )
+        }
+      />
+      <Route path="profile" element={<Profile />} />
+    </Routes>
   );
 }
 
