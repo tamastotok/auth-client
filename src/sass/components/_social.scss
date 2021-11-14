@@ -1,0 +1,33 @@
+@import "../base/colors";
+
+.social-links-container {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 220px;
+  display: flex;
+  justify-content: space-between;
+  a {
+    width: 43px;
+    height: 43px;
+  }
+}
+
+svg:hover {
+  circle {
+    stroke: $blue-hover;
+  }
+  path {
+    fill: $blue-hover;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: $blue;
+}
+
+a:hover {
+  color: $blue-hover;
+}
