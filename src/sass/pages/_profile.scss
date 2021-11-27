@@ -1,4 +1,4 @@
-@import "../base/colors";
+@import '../base/colors';
 
 .navbar {
   display: flex;
@@ -54,11 +54,18 @@
     text-transform: uppercase;
     cursor: pointer;
   }
-  button:hover {
-    border: 1px solid $blue;
-    background-color: $blue;
-    color: white;
-  }
+}
+
+.edit-button:hover {
+  border: 1px solid $blue;
+  background-color: $blue;
+  color: white;
+}
+
+.delete-button:hover {
+  border: 1px solid $red-hover;
+  background-color: $red-hover;
+  color: white;
 }
 
 .row {
@@ -75,17 +82,25 @@
     color: $gray;
   }
   input {
-    width: 400px;
+    width: 320px;
     font-weight: 600;
     cursor: text;
+    border: 1px solid black;
   }
   input:disabled {
-    border: none;
+    border: 1px solid transparent;
     color: black;
   }
 }
 
 .row:last-child {
+  display: flex;
   border-bottom: 0;
   padding-bottom: 0;
+}
+
+.pw-button:hover {
+  border: 1px solid $red-hover;
+  background-color: $red-hover;
+  color: white;
 }
