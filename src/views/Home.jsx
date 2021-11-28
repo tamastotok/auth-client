@@ -11,6 +11,7 @@ export default function Home({ name, userId, getUserData }) {
       const { data } = await axios.get(`${ENDPOINT}/user/get/${userId}`, {
         headers: {
           'auth-token': Cookies.get('token'),
+          _id: userId,
         },
       });
 
@@ -38,7 +39,7 @@ export default function Home({ name, userId, getUserData }) {
         history.push('/');
       }
     } catch (error) {
-      alert(error.response.data);
+      console.error(error);
     }
   };
   return (

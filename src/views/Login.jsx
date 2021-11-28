@@ -27,20 +27,20 @@ export default function Login({ getNameFromServer, getUserId }) {
     }
   };
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     if (emailRef.current && passwordRef.current) {
-      axios
-        .post(`${ENDPOINT}/auth/login`, {
+      try {
+        const response = await axios.post(`${ENDPOINT}/auth/login`, {
           email: emailRef.current.value,
           password: passwordRef.current.value,
-        })
-        .then((res) => {
-          getUserId(res.data._id);
-          getNameFromServer(res.data.name);
-          Cookies.set('token', res.headers['auth-token']);
-          history.push('/home');
-        })
-        .catch((error) => alert(error.response.data));
+        });
+        getUserId(response.data._id);
+        getNameFromServer(response.data.name);
+        Cookies.set('token', response.headers['auth-token']);
+        history.push('/home');
+      } catch (error) {
+        alert(error.response.data);
+      }
     }
   };
 

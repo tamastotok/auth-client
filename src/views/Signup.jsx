@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import axios from 'axios';
 import { Link, useHistory } from 'react-router-dom';
 import { ENDPOINT } from '../server';
@@ -14,7 +14,6 @@ export default function Signup() {
   const passwordRef = useRef(null);
   const visibleIconRef = useRef(null);
   const history = useHistory();
-  const [statusMessage, setStatusMessage] = useState('');
 
   const handleShowPassword = () => {
     if (passwordRef.current && visibleIconRef.current) {
@@ -28,30 +27,26 @@ export default function Signup() {
     }
   };
 
-  const handleReg = () => {
+  const handleReg = async () => {
     if (nameRef.current && emailRef.current && passwordRef.current) {
-      axios
-        .post(`${ENDPOINT}/auth/register`, {
+      try {
+        const { data } = await axios.post(`${ENDPOINT}/auth/register`, {
           name: nameRef.current.value,
           email: emailRef.current.value,
           password: passwordRef.current.value,
-        })
-        .then((res) => {
-          alert(res.data);
-          history.push('/');
-        })
-        .catch((error) => {
-          console.error(error.response.data);
-          setStatusMessage(error.response.data);
         });
+
+        alert(data);
+        history.push('/');
+      } catch (error) {
+        alert(error.response.data);
+      }
     }
   };
 
   return (
     <div className="reg-container">
       {/*--- Status message ---*/}
-
-      <div className="status-message">{statusMessage}</div>
 
       {/*--- Name ---*/}
       <div className="input-container">

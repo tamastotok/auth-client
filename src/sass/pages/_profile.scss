@@ -2,7 +2,10 @@
 
 .navbar {
   display: flex;
+  align-items: center;
   margin-bottom: 40px;
+  padding-left: 30px;
+  padding-right: 30px;
   a {
     margin-left: 20px;
   }
@@ -57,9 +60,8 @@
 }
 
 .edit-button:hover {
-  border: 1px solid $blue;
-  background-color: $blue;
-  color: white;
+  border: 2px solid $blue;
+  color: $blue;
 }
 
 .delete-button:hover {
@@ -100,7 +102,41 @@
 }
 
 .pw-button:hover {
-  border: 1px solid $red-hover;
+  border: 2px solid $red-hover;
+  color: $red-hover;
+}
+
+.back-btn {
+  height: fit-content;
+  border: 1px solid $gray;
+  border-radius: 5px;
+  background: none;
+  width: 100px;
+  height: 40px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.back-btn:hover {
+  border: 2px solid $blue;
+  color: $blue;
+}
+
+.confirm-btn {
+  height: fit-content;
+  border: 2px solid $red-hover;
+  border-radius: 5px;
+  background: none;
+  width: 80px;
+  height: 24px;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-left: auto;
+  color: $red-hover;
+}
+
+.confirm-btn:hover {
+  border: 2px solid $red-hover;
   background-color: $red-hover;
   color: white;
 }

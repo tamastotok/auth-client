@@ -38,9 +38,9 @@ function Profile() {
     history.goBack();
   };
 
-  const updateAccount = () => {
-    axios
-      .put(
+  const updateAccount = async () => {
+    try {
+      const { data } = await axios.put(
         `${ENDPOINT}/user/edit/${id}`,
         {
           name: nameRef.current.value,
@@ -54,13 +54,14 @@ function Profile() {
             _id: id,
           },
         }
-      )
-      .then((res) => alert(res.data))
-      .catch((error) => alert(error.response.data));
+      );
+      alert(data);
+    } catch (error) {
+      alert(error.response.data);
+    }
   };
 
   const editUserInfo = (e) => {
-    console.log(e.target.innerText);
     if (e.target.innerText === 'EDIT') {
       setIsDisabled((state) => !state);
     } else {
@@ -90,9 +91,9 @@ function Profile() {
     }
   };
 
-  const changeAccountPassword = () => {
-    axios
-      .put(
+  const changeAccountPassword = async () => {
+    try {
+      const { data } = await axios.put(
         `${ENDPOINT}/user/editpw/${id}`,
         {
           password: passwordRef.current.value,
@@ -104,10 +105,12 @@ function Profile() {
             _id: id,
           },
         }
-      )
-      .then((res) => alert(res.data))
+      );
 
-      .catch((error) => alert(error.response.data));
+      alert(data);
+    } catch (error) {
+      alert(error.response.data);
+    }
   };
 
   const changePassword = (e) => {
@@ -123,9 +126,11 @@ function Profile() {
   return (
     <div>
       <div className="navbar">
-        <img src="" alt="profile-pic" />
+        <img src="" alt="avatar" />
         <p>{name}</p>
-        <button onClick={handleGoBack}>back</button>
+        <button className="back-btn" onClick={handleGoBack}>
+          back
+        </button>
       </div>
 
       <div className="title">
@@ -157,7 +162,7 @@ function Profile() {
         <div className="table">
           <div className="row">
             <p>Photo</p>
-            <img src="" alt="profile" />
+            <img src="" alt="avatar" />
           </div>
 
           <div className="row">
@@ -245,7 +250,9 @@ function Profile() {
                 name="confirm-password"
                 ref={confirmPasswordRef}
               />
-              <button onClick={confirmDeleteAccount}>Delete</button>
+              <button className="confirm-btn" onClick={confirmDeleteAccount}>
+                Delete
+              </button>
             </div>
           ) : null}
         </div>
