@@ -73,20 +73,21 @@ function Profile() {
     setIsAccountDeleteDisabled(false);
   };
 
-  const confirmDeleteAccount = () => {
-    axios
-      .delete(`${ENDPOINT}/user/del/${id}`, {
+  const confirmDeleteAccount = async () => {
+    try {
+      const { data } = await axios.delete(`${ENDPOINT}/user/del/${id}`, {
         headers: {
           'auth-token': Cookies.get('token'),
           _id: id,
           password: confirmPasswordRef.current.value,
         },
-      })
-      .then((res) => {
-        alert(res.data);
-        history.push('/');
-      })
-      .catch((error) => alert(error.response.data));
+      });
+
+      alert(data);
+      history.push('/');
+    } catch (error) {
+      alert(error.response.data);
+    }
   };
 
   const changeAccountPassword = () => {

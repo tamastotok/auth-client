@@ -1,5 +1,4 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
 import Login from './views/Login';
 import Home from './views/Home';
 import Profile from './views/Profile';
@@ -13,12 +12,10 @@ function App() {
 
   const getNameFromServer = (str) => {
     setName(str);
-    console.log(str);
   };
 
   const getUserId = (id) => {
     setUserId(id);
-    console.log(id);
   };
 
   const getUserData = (data) => {
@@ -40,8 +37,7 @@ function App() {
         <Route path="/signup" component={Signup} />
 
         <Route path="/home">
-          <Navbar userId={userId} getUserData={getUserData} />
-          <Home name={name} />
+          <Home userId={userId} getUserData={getUserData} name={name} />
         </Route>
 
         <Route path="/profile/:id">
