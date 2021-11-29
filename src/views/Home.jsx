@@ -35,6 +35,7 @@ export default function Home({ name, userId, getUserData }) {
       );
 
       if (!userIsLoggedIn) {
+        sessionStorage.clear();
         Cookies.remove('token');
         history.push('/');
       }
