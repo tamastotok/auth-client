@@ -1,12 +1,12 @@
-import { GoogleLogin } from "react-google-login";
+import { GoogleLogin } from 'react-google-login';
 
 export default function Google() {
   const googleSuccess = async (res) => {
-    console.log(res);
+    //console.log(res);
   };
 
   const googleFailure = (error) => {
-    console.log(error);
+    //console.log(error);
   };
 
   return (

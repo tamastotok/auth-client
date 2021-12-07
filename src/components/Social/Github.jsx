@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 export default function Github() {
   return (
     <>
-      <Link to="/github">
+      <Link to="/">
         <svg
           width="43"
           height="43"

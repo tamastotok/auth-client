@@ -1,19 +1,18 @@
 import { useRef } from 'react';
-import axios from 'axios';
 import { Link, useHistory } from 'react-router-dom';
-import { ENDPOINT } from '../server';
 import lock_black_24dp from '../assets/lock_black_24dp.svg';
 import visibility_black_24dp from '../assets/visibility_black_24dp.svg';
 import visibility_off_black_24dp from '../assets/visibility_off_black_24dp.svg';
 import person_black_24dp from '../assets/person_black_24dp.svg';
 import mail_black_24dp from '../assets/mail_black_24dp.svg';
+import { signup } from '../services/HTTP/signup';
 
 export default function Signup() {
+  const history = useHistory();
   const nameRef = useRef(null);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const visibleIconRef = useRef(null);
-  const history = useHistory();
 
   const handleShowPassword = () => {
     if (passwordRef.current && visibleIconRef.current) {
@@ -29,25 +28,18 @@ export default function Signup() {
 
   const handleReg = async () => {
     if (nameRef.current && emailRef.current && passwordRef.current) {
-      try {
-        const { data } = await axios.post(`${ENDPOINT}/auth/register`, {
-          name: nameRef.current.value,
-          email: emailRef.current.value,
-          password: passwordRef.current.value,
-        });
-
-        alert(data);
-        history.push('/');
-      } catch (error) {
-        alert(error.response.data);
-      }
+      signup(
+        nameRef.current.value,
+        emailRef.current.value,
+        passwordRef.current.value
+      ).then((res) => {
+        if (res) history.push('/');
+      });
     }
   };
 
   return (
     <div className="reg-container">
-      {/*--- Status message ---*/}
-
       {/*--- Name ---*/}
       <div className="input-container">
         <img src={person_black_24dp} alt="mail-icon" />

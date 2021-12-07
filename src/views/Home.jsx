@@ -1,48 +1,24 @@
-import axios from 'axios';
 import { useHistory } from 'react-router-dom';
-import { ENDPOINT } from '../server';
-import Cookies from 'js-cookie';
+import { logout } from '../services/HTTP/logout';
+import { getProfile } from '../services/HTTP/profile';
 
-export default function Home({ name, userId, getUserData }) {
+export default function Home() {
   const history = useHistory();
+  const _id = sessionStorage.getItem('_id');
+  const name = sessionStorage.getItem('name');
 
   const handleViewProfile = async () => {
-    try {
-      const { data } = await axios.get(`${ENDPOINT}/user/get/${userId}`, {
-        headers: {
-          'auth-token': Cookies.get('token'),
-          _id: userId,
-        },
-      });
-
-      getUserData(data);
-      history.push(`/profile/id=${userId}`);
-    } catch (error) {
-      alert(error.response.data);
-    }
+    getProfile(_id).then((res) => {
+      if (res) history.push(`/profile/id#${_id}`);
+    });
   };
 
-  const handleLogout = async () => {
-    try {
-      const { userIsLoggedIn } = await axios.get(
-        `${ENDPOINT}/auth/logout/${userId}`,
-        {
-          headers: {
-            'auth-token': Cookies.get('token'),
-            _id: userId,
-          },
-        }
-      );
-
-      if (!userIsLoggedIn) {
-        sessionStorage.clear();
-        Cookies.remove('token');
-        history.push('/');
-      }
-    } catch (error) {
-      console.error(error);
-    }
+  const handleLogout = () => {
+    logout(_id).then((res) => {
+      if (res) history.push('/');
+    });
   };
+
   return (
     <div className="home-container">
       <h1>Welcome {name}!</h1>

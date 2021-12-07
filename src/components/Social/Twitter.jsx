@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 export default function Twitter() {
   return (
     <>
-      <Link to="/twitter">
+      <Link to="/">
         <svg
           width="43"
           height="43"
