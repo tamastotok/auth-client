@@ -4,6 +4,9 @@ import Home from './views/Home';
 import Profile from './views/Profile';
 import Signup from './views/Signup';
 
+//TODO  [ ] refactor style to bootstrap
+//TODO  [ ] handle images
+
 function App() {
   return (
     <BrowserRouter>

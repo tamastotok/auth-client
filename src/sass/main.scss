@@ -1,13 +1,22 @@
-// CSS reset, tags, colors
-@import './base/colors';
-@import './base/reset';
+//  CSS reset, tags, colors
+//@import './base/colors';
+//@import './base/reset';
 
-// Components
-@import './components/input';
-@import './components/social';
+//  Components
+//@import './components/input';
+//@import './components/social';
 
-//Views
+//  Views
 @import './pages/login';
-@import './pages/profile';
-@import './pages/signup';
-@import './pages/home';
+//@import './pages/profile';
+//@import './pages/signup';
+//@import './pages/home';
+
+//  Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+body {
+  margin: 0;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
