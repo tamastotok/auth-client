@@ -18,16 +18,14 @@ export default function Login() {
   const [checked, setChecked] = useState(false);
 
   const handleTogglePassword = (e) => {
-    if (passwordRef.current && visibleIconRef.current) {
-      if (passwordRef.current.type === 'password') {
-        setChecked(e.currentTarget.checked);
-        passwordRef.current.type = 'text';
-        visibleIconRef.current.src = visibility_black_24dp;
-      } else {
-        setChecked(e.currentTarget.checked);
-        passwordRef.current.type = 'password';
-        visibleIconRef.current.src = visibility_off_black_24dp;
-      }
+    if (passwordRef.current.type === 'password') {
+      setChecked(e.currentTarget.checked);
+      passwordRef.current.type = 'text';
+      visibleIconRef.current.src = visibility_black_24dp;
+    } else {
+      setChecked(e.currentTarget.checked);
+      passwordRef.current.type = 'password';
+      visibleIconRef.current.src = visibility_off_black_24dp;
     }
   };
 
@@ -40,76 +38,71 @@ export default function Login() {
   };
 
   return (
-    <>
-      <div className="auth-container">
-        <h3>Join thousands of learners from around the world</h3>
-        <p>
-          Master web development by making real-life projects. There are
-          multiple paths for your to choose.
-        </p>
+    <div className="auth-container">
+      <h3>Join thousands of learners from around the world</h3>
+      <p>
+        Master web development by making real-life projects. There are multiple
+        paths for your to choose.
+      </p>
 
-        <Form>
-          {/*--- Email ---*/}
-          <Form.Group className="mb-3 w-100 d-flex" controlId="formBasicEmail">
-            <img src={mail_black_24dp} alt="mail-icon" />
-            <Form.Control
-              className="ms-2"
-              type="email"
-              placeholder="Enter email"
-              required
-              ref={emailRef}
-            />
-          </Form.Group>
+      <Form>
+        {/*--- Email ---*/}
+        <Form.Group className="mb-3 w-100 d-flex" controlId="formBasicEmail">
+          <img src={mail_black_24dp} alt="mail-icon" />
+          <Form.Control
+            className="ms-2"
+            type="email"
+            placeholder="Enter email"
+            required
+            ref={emailRef}
+          />
+        </Form.Group>
 
-          {/*--- Password ---*/}
-          <Form.Group
-            className="mb-3 w-100 d-flex"
-            controlId="formBasicPassword"
+        {/*--- Password ---*/}
+        <Form.Group className="mb-3 w-100 d-flex" controlId="formBasicPassword">
+          <img src={lock_black_24dp} alt="lock-icon" />
+          <Form.Control
+            className="mx-2"
+            type="password"
+            placeholder="Password"
+            required
+            ref={passwordRef}
+          />
+          <ToggleButton
+            id="toggle-check"
+            type="checkbox"
+            variant="outline-secondary"
+            checked={checked}
+            value="1"
+            onChange={handleTogglePassword}
           >
-            <img src={lock_black_24dp} alt="lock-icon" />
-            <Form.Control
-              className="mx-2"
-              type="password"
-              placeholder="Password"
-              required
-              ref={passwordRef}
+            <img
+              src={visibility_off_black_24dp}
+              alt="toggle-password"
+              ref={visibleIconRef}
             />
-            <ToggleButton
-              id="toggle-check"
-              type="checkbox"
-              variant="outline-secondary"
-              checked={checked}
-              value="1"
-              onChange={handleTogglePassword}
-            >
-              <img
-                src={visibility_off_black_24dp}
-                alt="toggle-password"
-                ref={visibleIconRef}
-              />
-            </ToggleButton>
-          </Form.Group>
+          </ToggleButton>
+        </Form.Group>
 
-          {/*--- Login Button ---*/}
-          <Button
-            className="w-100 mb-2"
-            variant="primary"
-            type="submit"
-            onClick={handleLogin}
-          >
-            Login
+        {/*--- Login Button ---*/}
+        <Button
+          className="w-100 mb-2"
+          variant="primary"
+          type="submit"
+          onClick={handleLogin}
+        >
+          Login
+        </Button>
+      </Form>
+
+      <div>
+        <small>Not a member yet?</small>
+        <Link to="/signup">
+          <Button variant="link" size="sm">
+            Register
           </Button>
-        </Form>
-
-        <div>
-          <small>Not a member yet?</small>
-          <Link to="/signup">
-            <Button variant="link" size="sm">
-              Register
-            </Button>
-          </Link>
-        </div>
+        </Link>
       </div>
-    </>
+    </div>
   );
 }
