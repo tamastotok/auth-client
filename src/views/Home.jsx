@@ -1,6 +1,7 @@
 import { useHistory } from 'react-router-dom';
 import { logout } from '../services/HTTP/logout';
 import { getProfile } from '../services/HTTP/profile';
+import Button from 'react-bootstrap/Button';
 
 export default function Home() {
   const history = useHistory();
@@ -22,13 +23,17 @@ export default function Home() {
   return (
     <div className="home-container">
       <h1>Welcome {name}!</h1>
-      <div className="nav-btn-group">
-        <button className="profile-btn" onClick={handleViewProfile}>
-          View profile
-        </button>
-        <button className="logout-btn" onClick={handleLogout}>
+      <div>
+        <Button className="mx-2" variant="primary" onclick={handleViewProfile}>
+          Profile
+        </Button>
+        <Button
+          className="mx-2"
+          variant="outline-primary"
+          onClick={handleLogout}
+        >
           Logout
-        </button>
+        </Button>
       </div>
     </div>
   );
