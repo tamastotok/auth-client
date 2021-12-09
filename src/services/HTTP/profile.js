@@ -13,10 +13,10 @@ export const getProfile = async (id) => {
 
     sessionStorage.setItem('_id', data._id);
     sessionStorage.setItem('name', data.name);
-    sessionStorage.setItem('bio', data.bio);
-    sessionStorage.setItem('phone', data.phone);
     sessionStorage.setItem('email', data.email);
     sessionStorage.setItem('password', '******');
+    sessionStorage.setItem('bio', data.bio);
+    sessionStorage.setItem('phone', data.phone);
 
     return true;
   } catch (error) {
@@ -37,6 +37,12 @@ export const updateProfile = async (id, name, email, bio, phone) => {
         },
       }
     );
+
+    sessionStorage.setItem('name', name);
+    sessionStorage.setItem('email', email);
+    sessionStorage.setItem('bio', bio);
+    sessionStorage.setItem('phone', phone);
+
     alert(data);
   } catch (error) {
     alert(error.response.data);
@@ -63,11 +69,16 @@ export const deleteProfile = async (id, password) => {
   }
 };
 
-export const changePassword = async (id, password, newPassword) => {
+export const changePassword = async (
+  id,
+  oldPassword,
+  newPassword,
+  confirmNewPassword
+) => {
   try {
     const { data } = await axios.put(
       `${ENDPOINT}/user/editpw/${id}`,
-      { password, newPassword },
+      { oldPassword, newPassword, confirmNewPassword },
       {
         headers: {
           'auth-token': Cookies.get('token'),
@@ -77,7 +88,9 @@ export const changePassword = async (id, password, newPassword) => {
     );
 
     alert(data);
+    return true;
   } catch (error) {
     alert(error.response.data);
+    return false;
   }
 };
