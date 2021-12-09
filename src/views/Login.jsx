@@ -29,12 +29,12 @@ export default function Login() {
     }
   };
 
-  const handleLogin = () => {
-    if (emailRef.current && passwordRef.current) {
-      login(emailRef.current.value, passwordRef.current.value).then((res) => {
-        if (res) history.push('/home');
-      });
-    }
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    login(emailRef.current.value, passwordRef.current.value).then((res) => {
+      if (res) history.push('/home');
+    });
   };
 
   return (

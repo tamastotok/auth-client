@@ -8,9 +8,11 @@ export default function Home() {
   const _id = sessionStorage.getItem('_id');
   const name = sessionStorage.getItem('name');
 
-  const handleViewProfile = async () => {
+  const handleViewProfile = () => {
     getProfile(_id).then((res) => {
-      if (res) history.push(`/profile/id#${_id}`);
+      if (res) {
+        history.push(`/profile/id#${_id}`);
+      }
     });
   };
 
@@ -24,7 +26,7 @@ export default function Home() {
     <div className="home-container">
       <h1>Welcome {name}!</h1>
       <div>
-        <Button className="mx-2" variant="primary" onclick={handleViewProfile}>
+        <Button className="mx-2" variant="primary" onClick={handleViewProfile}>
           Profile
         </Button>
         <Button

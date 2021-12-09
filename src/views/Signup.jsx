@@ -30,16 +30,16 @@ export default function Signup() {
     }
   };
 
-  const handleReg = async () => {
-    if (nameRef.current && emailRef.current && passwordRef.current) {
-      signup(
-        nameRef.current.value,
-        emailRef.current.value,
-        passwordRef.current.value
-      ).then((res) => {
-        if (res) history.push('/');
-      });
-    }
+  const handleReg = async (e) => {
+    e.preventDefault();
+
+    signup(
+      nameRef.current.value,
+      emailRef.current.value,
+      passwordRef.current.value
+    ).then((res) => {
+      if (res) history.push('/');
+    });
   };
 
   return (
