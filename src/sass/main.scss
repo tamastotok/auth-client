@@ -1,6 +1,9 @@
 //  CSS reset, tags, colors
-//@import './base/colors';
-//@import './base/reset';
+//  CSS Reset
+@import './base/reset';
+
+//  Bootstrap
+@import '~bootstrap/scss/bootstrap';
 
 //  Components
 //@import './components/input';
@@ -8,15 +11,6 @@
 
 //  Views
 @import './pages/login';
-//@import './pages/profile';
+@import './pages/settings';
 @import './pages/signup';
 @import './pages/home';
-
-//  Bootstrap
-@import '~bootstrap/scss/bootstrap';
-
-body {
-  margin: 0;
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
