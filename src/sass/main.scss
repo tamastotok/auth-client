@@ -1,13 +1,8 @@
-//  CSS reset, tags, colors
 //  CSS Reset
 @import './base/reset';
 
 //  Bootstrap
 @import '~bootstrap/scss/bootstrap';
-
-//  Components
-//@import './components/input';
-//@import './components/social';
 
 //  Views
 @import './pages/login';
