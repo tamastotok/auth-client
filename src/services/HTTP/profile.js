@@ -9,6 +9,9 @@ export const getProfile = async (id) => {
         'auth-token': Cookies.get('token'),
         _id: id,
       },
+      params: {
+        _id: id,
+      },
     });
 
     sessionStorage.setItem('_id', data._id);

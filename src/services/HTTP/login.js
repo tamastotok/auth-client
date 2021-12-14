@@ -12,7 +12,7 @@ export const login = async (email, password) => {
     sessionStorage.setItem('_id', data._id);
     sessionStorage.setItem('name', data.name);
 
-    Cookies.set('token', headers['auth-token']);
+    Cookies.set('token', headers['auth-token'], { expires: 0.5 });
     return true;
   } catch (error) {
     alert(error.response.data);

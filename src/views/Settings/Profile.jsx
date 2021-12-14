@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router';
+import { useLocation } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { getProfile, updateProfile } from '../../services/HTTP/profile';
@@ -17,14 +17,13 @@ export default function Profile() {
     if (location.hash) {
       const id = location.hash.substring(1);
       getProfile(id).then((res) => {
-        if (res) {
-          setName(sessionStorage.getItem('name'));
-          setEmail(sessionStorage.getItem('email'));
-          setBio(sessionStorage.getItem('bio'));
-          setPhone(sessionStorage.getItem('phone'));
-        }
+        setName(sessionStorage.getItem('name'));
+        setEmail(sessionStorage.getItem('email'));
+        setBio(sessionStorage.getItem('bio'));
+        setPhone(sessionStorage.getItem('phone'));
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.hash]);
 
   const handleEditProfile = () => {
